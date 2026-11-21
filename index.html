@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Life — Drug Awareness &amp; Prevention</title>
+    <meta name="description"
+        content="An immersive awareness experience on drug prevention, effects, warning signs and support.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ============ RESET & TOKENS ============ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #0a0d1c;
+            --bg-2: #0e1330;
+            --bg-3: #121838;
+            --surface: rgba(255, 255, 255, 0.055);
+            --surface-strong: rgba(255, 255, 255, 0.09);
+            --border: rgba(255, 255, 255, 0.12);
+            --text: #eef1fb;
+            --text-muted: #a3aad0;
+            --text-faint: #6b7299;
+            --blue: #4f7cff;
+            --indigo: #7c6bff;
+            --purple: #c65bff;
+            --teal: #18e0c4;
+            --orange: #ff8a3d;
+            --coral: #ff5b7f;
+            --cyan: #22d3ee;
+            --grad-main: linear-gradient(120deg, var(--blue), var(--purple) 55%, var(--orange));
+            --grad-cool: linear-gradient(120deg, var(--teal), var(--blue));
+            --grad-warm: linear-gradient(120deg, var(--orange), var(--coral));
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --shadow-lg: 0 30px 80px -20px rgba(0, 0, 0, 0.55);
+            --shadow-glow: 0 0 60px -10px rgba(124, 107, 255, 0.45);
+        }
+
+        html[data-theme="light"] {
+            --bg: #f5f7ff;
+            --bg-2: #eef1fc;
+            --bg-3: #e7ebfb;
+            --surface: rgba(255, 255, 255, 0.65);
+            --surface-strong: rgba(255, 255, 255, 0.85);
+            --border: rgba(20, 25, 50, 0.09);
+            --text: #12162c;
+            --text-muted: #4b5178;
+            --text-faint: #8890b8;
+            --shadow-lg: 0 30px 80px -25px rgba(30, 40, 90, 0.25);
+            --shadow-glow: 0 0 60px -15px rgba(124, 107, 255, 0.35);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background .5s ease, color .5s ease;
+            cursor: none;
+        }
+
+        @media (hover:none) {
+            body {
+                cursor: auto;
+            }
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(34, 211, 238, 0.09);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            padding: 7px 16px;
+            border-radius: 99px;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        .gradient-text {
+            background: var(--grad-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .section {
+            position: relative;
+            padding: 130px 0;
+        }
+
+        .section-head {
+            max-width: 680px;
+            margin: 0 auto 64px;
+            text-align: center;
+        }
+
+        .section-head h2 {
+            font-size: clamp(2rem, 4vw, 2.9rem);
+            margin-bottom: 16px;
+        }
+
+        .section-head p {
+            color: var(--text-muted);
+            font-size: 1.08rem;
+        }
+
+        ::selection {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--blue), var(--purple));
+            border-radius: 10px;
+        }
+
+        /* focus visibility for accessibility */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* ============ CUSTOM CURSOR ============ */
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+            transition: opacity .2s;
+        }
+
+        .cursor-ring {
+            width: 34px;
+            height: 34px;
+            border: 1.5px solid rgba(124, 107, 255, 0.6);
+            transition: width .2s, height .2s, border-color .25s, background .25s;
+        }
+
+        .cursor-ring.active {
+            width: 54px;
+            height: 54px;
+            background: rgba(124, 107, 255, 0.12);
+            border-color: var(--purple);
+        }
+
+        @media (hover:none),
+        (pointer:coarse) {
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+        }
+
+        /* ============ LOADER ============ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 18px;
+            transition: opacity .6s ease, visibility .6s ease;
+        }
+
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .loader-bar {
+            width: 220px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loader-bar span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: var(--grad-main);
+            animation: load 1.4s ease forwards;
+            border-radius: 10px;
+        }
+
+        @keyframes load {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* ============ BACKGROUND FX ============ */
+        .bg-fx {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse 80% 60% at 15% 0%, rgba(79, 124, 255, 0.18), transparent 60%),
+                radial-gradient(ellipse 70% 50% at 90% 20%, rgba(198, 91, 255, 0.16), transparent 60%),
+                radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255, 138, 61, 0.10), transparent 60%),
+                var(--bg);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: .55;
+            animation: float 16s ease-in-out infinite;
+        }
+
+        .blob1 {
+            width: 420px;
+            height: 420px;
+            background: var(--blue);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob2 {
+            width: 360px;
+            height: 360px;
+            background: var(--purple);
+            top: 30%;
+            right: -120px;
+            animation-delay: -4s;
+        }
+
+        .blob3 {
+            width: 300px;
+            height: 300px;
+            background: var(--teal);
+            bottom: -80px;
+            left: 20%;
+            animation-delay: -9s;
+        }
+
+        .blob4 {
+            width: 260px;
+            height: 260px;
+            background: var(--orange);
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -6s;
+            opacity: .35;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.08);
+            }
+
+            66% {
+                transform: translate(-30px, 25px) scale(0.94);
+            }
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: .03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ============ NAV ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            padding: 18px 0;
+            transition: padding .35s ease, background .35s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 11px;
+            background: var(--grad-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            box-shadow: 0 0 20px -4px var(--purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            padding: 9px 15px;
+            border-radius: 99px;
+            font-size: .92rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: .25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface-strong);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--surface-strong);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: transform .3s;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.08);
+        }
+
+        .burger {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--surface-strong);
+            border: 1px solid var(--border);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .burger span {
+            width: 18px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 88px;
+            left: 16px;
+            right: 16px;
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 14px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 899;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            padding: 13px 16px;
+            border-radius: 14px;
+            font-weight: 500;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--surface-strong);
+        }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 28px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: .95rem;
+            transition: transform .3s cubic-bezier(.2, .9, .3, 1.3), box-shadow .3s;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--grad-main);
+            background-size: 180% 180%;
+            color: #fff;
+            box-shadow: 0 12px 30px -10px rgba(124, 107, 255, 0.55);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 18px 40px -10px rgba(124, 107, 255, 0.7);
+            background-position: right center;
+        }
+
+        .btn-ghost {
+            background: var(--surface-strong);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-3px);
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+            transform: translateY(-3px);
+        }
+
+        .btn:active {
+            transform: scale(.97);
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 150px 0 90px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+            margin-bottom: 22px;
+        }
+
+        .hero p.lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 36px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 46px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats div strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            background: var(--grad-cool);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-stats div span {
+            font-size: .82rem;
+            color: var(--text-faint);
+        }
+
+        /* hero illustration: diverging path */
+        .hero-art {
+            position: relative;
+            height: 520px;
+        }
+
+        .art-card {
+            position: absolute;
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            padding: 18px;
+            animation: hover-float 6s ease-in-out infinite;
+        }
+
+        @keyframes hover-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        .path-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(30px);
+        }
+
+        .card-life {
+            top: 6%;
+            left: 2%;
+            width: 190px;
+            animation-delay: 0s;
+        }
+
+        .card-danger {
+            bottom: 8%;
+            right: 0;
+            width: 190px;
+            animation-delay: -3s;
+        }
+
+        .card-life .badge {
+            background: var(--grad-cool);
+        }
+
+        .card-danger .badge {
+            background: var(--grad-warm);
+        }
+
+        .mini-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .art-card h4 {
+            font-size: .95rem;
+            margin-bottom: 4px;
+        }
+
+        .art-card p {
+            font-size: .78rem;
+            color: var(--text-muted);
+        }
+
+        /* ============ CARDS shared ============ */
+        .grid {
+            display: grid;
+            gap: 26px;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 32px 28px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .4s cubic-bezier(.2, .8, .3, 1.2), box-shadow .4s, border-color .4s;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(124, 107, 255, 0.14), transparent 60%);
+            transition: opacity .4s;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(124, 107, 255, 0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .icon-badge {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, .4);
+        }
+
+        .badge-blue {
+            background: linear-gradient(135deg, var(--blue), var(--indigo));
+        }
+
+        .badge-purple {
+            background: linear-gradient(135deg, var(--purple), var(--coral));
+        }
+
+        .badge-teal {
+            background: linear-gradient(135deg, var(--teal), var(--blue));
+        }
+
+        .badge-orange {
+            background: linear-gradient(135deg, var(--orange), var(--coral));
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: .94rem;
+        }
+
+        .card .stat-line {
+            margin-top: 16px;
+            font-family: var(--font-mono);
+            font-size: .8rem;
+            color: var(--cyan);
+        }
+
+        /* reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .8s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal.scale {
+            transform: translateY(20px) scale(.92);
+        }
+
+        .reveal.scale.in {
+            transform: translateY(0) scale(1);
+        }
+
+        .stagger .reveal:nth-child(1) {
+            transition-delay: .05s;
+        }
+
+        .stagger .reveal:nth-child(2) {
+            transition-delay: .15s;
+        }
+
+        .stagger .reveal:nth-child(3) {
+            transition-delay: .25s;
+        }
+
+        .stagger .reveal:nth-child(4) {
+            transition-delay: .35s;
+        }
+
+        /* ============ ABOUT / DRUGS TYPES TABS ============ */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 22px;
+            border-radius: 99px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-weight: 600;
+            font-size: .88rem;
+            transition: .3s;
+        }
+
+        .tab-btn.active {
+            background: var(--grad-main);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: grid;
+        }
+
+        /* ============ EFFECTS ============ */
+        .effect-card {
+            text-align: left;
+        }
+
+        .effect-card .pct {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            background: var(--grad-warm);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 10px;
+        }
+
+        /* ============ WARNING SIGNS FLIP ============ */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .flip-card {
+            perspective: 1400px;
+            height: 220px;
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform .7s cubic-bezier(.4, .2, .2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-inner,
+        .flip-card:focus-within .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-face {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-md);
+            backface-visibility: hidden;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            border: 1px solid var(--border);
+        }
+
+        .flip-front {
+            background: var(--surface);
+            backdrop-filter: blur(14px);
+        }
+
+        .flip-back {
+            background: var(--grad-main);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .flip-back p {
+            font-size: .85rem;
+            opacity: .95;
+        }
+
+        .flip-card button {
+            all: unset;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* ============ PREVENTION TIMELINE ============ */
+        .timeline {
+            position: relative;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 29px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(var(--blue), var(--purple), var(--orange));
+        }
+
+        .tl-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 48px;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--grad-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 0 0 6px var(--bg), 0 0 20px -2px var(--purple);
+        }
+
+        .tl-item h3 {
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+
+        .tl-item p {
+            color: var(--text-muted);
+            font-size: .94rem;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .stories-track {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .story-card {
+            padding: 32px 28px;
+        }
+
+        .story-quote {
+            font-size: .98rem;
+            color: var(--text);
+            margin: 16px 0;
+            font-style: italic;
+        }
+
+        .story-person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--grad-cool);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .story-person strong {
+            display: block;
+            font-size: .9rem;
+        }
+
+        .story-person span {
+            font-size: .78rem;
+            color: var(--text-faint);
+        }
+
+        .stars {
+            color: var(--orange);
+            font-size: .9rem;
+            letter-spacing: 2px;
+        }
+
+        /* ============ QUIZ ============ */
+        .quiz-wrap {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quiz-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--grad-main);
+            border-radius: 99px;
+            transition: width .5s ease;
+        }
+
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: .78rem;
+            color: var(--text-faint);
+            margin-bottom: 18px;
+        }
+
+        #quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 26px;
+            min-height: 70px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .quiz-opt {
+            text-align: left;
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border);
+            background: var(--surface-strong);
+            transition: .25s;
+            font-size: .95rem;
+        }
+
+        .quiz-opt:hover {
+            border-color: var(--cyan);
+            transform: translateX(4px);
+        }
+
+        .quiz-opt.correct {
+            border-color: var(--teal);
+            background: rgba(24, 224, 196, 0.14);
+        }
+
+        .quiz-opt.wrong {
+            border-color: var(--coral);
+            background: rgba(255, 91, 127, 0.14);
+        }
+
+        .quiz-opt:disabled {
+            cursor: default;
+        }
+
+        .quiz-feedback {
+            margin-top: 18px;
+            font-size: .9rem;
+            font-weight: 600;
+            min-height: 20px;
+        }
+
+        .quiz-feedback.correct {
+            color: var(--teal);
+        }
+
+        .quiz-feedback.wrong {
+            color: var(--coral);
+        }
+
+        .quiz-result {
+            text-align: center;
+        }
+
+        .quiz-result .score {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            background: var(--grad-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 14px 0;
+        }
+
+        /* ============ STATS DASHBOARD ============ */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            margin-bottom: 40px;
+        }
+
+        .dash-card {
+            padding: 28px 22px;
+            text-align: center;
+        }
+
+        .counter {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            background: var(--grad-cool);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .dash-card p {
+            margin-top: 8px;
+            font-size: .85rem;
+            color: var(--text-muted);
+        }
+
+        .bars {
+            padding: 36px 30px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .bar-label {
+            width: 150px;
+            font-size: .85rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 99px;
+            transition: width 1.4s cubic-bezier(.2, .7, .1, 1);
+        }
+
+        .bar-value {
+            width: 48px;
+            text-align: right;
+            font-family: var(--font-mono);
+            font-size: .85rem;
+            color: var(--text-faint);
+        }
+
+        .dash-note {
+            margin-top: 20px;
+            font-size: .78rem;
+            color: var(--text-faint);
+            text-align: center;
+        }
+
+        /* ============ HELP SECTION ============ */
+        .help-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        .help-panel {
+            background: var(--grad-main);
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .help-panel::after {
+            content: '';
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            filter: blur(40px);
+            top: -80px;
+            right: -80px;
+        }
+
+        .help-panel h3 {
+            font-size: 1.6rem;
+            margin-bottom: 14px;
+        }
+
+        .help-panel p {
+            opacity: .92;
+            margin-bottom: 26px;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+        }
+
+        .contact-item .ico {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-size: .95rem;
+        }
+
+        .contact-item span {
+            font-size: .8rem;
+            opacity: .85;
+        }
+
+        .support-cards {
+            display: grid;
+            gap: 20px;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            padding: 70px 0 30px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-quote {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin: 20px 0;
+            max-width: 320px;
+        }
+
+        .footer h4 {
+            font-size: .9rem;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-faint);
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer ul a {
+            color: var(--text-muted);
+            font-size: .92rem;
+            transition: .2s;
+        }
+
+        .footer ul a:hover {
+            color: var(--cyan);
+            padding-left: 4px;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .social-row a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface-strong);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+        }
+
+        .social-row a:hover {
+            background: var(--grad-main);
+            transform: translateY(-4px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: .82rem;
+            color: var(--text-faint);
+            padding-top: 26px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ============ BACK TO TOP ============ */
+        #back-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--grad-main);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 12px 30px -8px rgba(124, 107, 255, .6);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: .35s;
+            z-index: 500;
+        }
+
+        #back-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-top:hover {
+            transform: translateY(-5px) scale(1.06);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width:980px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-art {
+                height: 380px;
+                margin-top: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .flip-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stories-track {
+                grid-template-columns: 1fr;
+            }
+
+            .dash-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width:600px) {
+            .section {
+                padding: 90px 0;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .grid-3,
+            .grid-4,
+            .flip-grid,
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-ctas .btn {
+                justify-content: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-wrap {
+                padding: 26px;
+            }
+
+            .bar-label {
+                width: 100px;
+                font-size: .75rem;
+            }
+        }
+
+        /* reduced motion */
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grain"></div>
+    <div class="bg-fx">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+        <div class="blob blob4"></div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <div id="loader">
+        <div class="loader-logo">Choose<span class="gradient-text">Life</span></div>
+        <div class="loader-bar"><span></span></div>
+    </div>
+
+    <!-- ================= NAV ================= -->
+    <header id="site-header">
+        <div class="nav-inner container" style="max-width:1200px;">
+            <a href="#top" class="logo"><span class="logo-mark">🛡️</span>Choose<span
+                    class="gradient-text">Life</span></a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#effects">Effects</a>
+                <a href="#signs">Warning Signs</a>
+                <a href="#prevention">Prevention</a>
+                <a href="#stories">Stories</a>
+                <a href="#quiz">Quiz</a>
+                <a href="#stats">Statistics</a>
+                <a href="#help">Get Help</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark and light mode">🌙</button>
+                <button class="burger" id="burger"
+                    aria-label="Open menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#about">About</a>
+            <a href="#effects">Effects</a>
+            <a href="#signs">Warning Signs</a>
+            <a href="#prevention">Prevention</a>
+            <a href="#stories">Stories</a>
+            <a href="#quiz">Quiz</a>
+            <a href="#stats">Statistics</a>
+            <a href="#help">Get Help</a>
+        </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top">
+        <div class="container hero-grid">
+            <div class="reveal in">
+                <div class="eyebrow">Youth &amp; Family Awareness Initiative</div>
+                <h1>Say No to Drugs,<br><span class="gradient-text">Say Yes to Life.</span></h1>
+                <p class="lead">Every choice shapes the road ahead. Understand the real risks, spot the warning signs
+                    early, and build the strength — for yourself or someone you love — to choose a healthier, fuller
+                    future.</p>
+                <div class="hero-ctas">
+                    <a href="#about" class="btn btn-primary">Learn More →</a>
+                    <a href="#help" class="btn btn-ghost">🆘 Get Help</a>
+                    <a href="#quiz" class="btn btn-outline">🧠 Awareness Quiz</a>
+                </div>
+                <div class="hero-stats">
+                    <div><strong data-count="296">0</strong><span>Million+ affected worldwide *</span></div>
+                    <div><strong data-count="90">0</strong><span>% recovery aided by early support</span></div>
+                    <div><strong data-count="24">0</strong><span>/7 helplines available</span></div>
+                </div>
+            </div>
+            <div class="hero-art reveal in">
+                <svg class="path-svg" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <defs>
+                        <linearGradient id="lifeGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#18e0c4" />
+                            <stop offset="100%" stop-color="#4f7cff" />
+                        </linearGradient>
+                        <linearGradient id="dangerGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#ff8a3d" />
+                            <stop offset="100%" stop-color="#ff5b7f" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M200 480 C200 380 200 340 200 300" stroke="rgba(255,255,255,0.18)" stroke-width="6"
+                        stroke-linecap="round" />
+                    <path id="pathLife" d="M200 300 C120 220 70 150 60 40" stroke="url(#lifeGrad)" stroke-width="6"
+                        stroke-linecap="round" fill="none" />
+                    <path id="pathDanger" d="M200 300 C280 220 330 150 340 40" stroke="url(#dangerGrad)"
+                        stroke-width="6" stroke-linecap="round" fill="none" stroke-dasharray="6 10" />
+                    <circle cx="200" cy="300" r="10" fill="#fff" />
+                    <circle cx="60" cy="40" r="8" fill="#18e0c4" />
+                    <circle cx="340" cy="40" r="8" fill="#ff5b7f" />
+                </svg>
+                <div class="art-card card-life">
+                    <div class="mini-badge badge">🌱</div>
+                    <h4>The Life Path</h4>
+                    <p>Health, clarity, relationships &amp; a future full of options.</p>
+                </div>
+                <div class="art-card card-danger">
+                    <div class="mini-badge badge">⚠️</div>
+                    <h4>The Risk Path</h4>
+                    <p>Dependency, isolation, and a future that keeps shrinking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">Know the Basics</div>
+                <h2>What are drugs, really?</h2>
+                <p>A drug is any substance that changes how the brain and body work. Some are used safely under medical
+                    guidance — others are misused, and that's where real danger begins.</p>
+            </div>
+
+            <div class="tabs reveal">
+                <button class="tab-btn active" data-tab="what">What Are Drugs</button>
+                <button class="tab-btn" data-tab="types">Types of Drugs</button>
+                <button class="tab-btn" data-tab="why">Why Addiction Happens</button>
+            </div>
+
+            <div class="tab-panel grid grid-3 active stagger" data-panel="what">
+                <div class="card reveal">
+                    <div class="icon-badge badge-blue">💊</div>
+                    <h3>Medical Use</h3>
+                    <p>Prescribed medicines that treat pain, illness or mental health conditions when taken exactly as
+                        directed by a professional.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-purple">🚫</div>
+                    <h3>Substance Misuse</h3>
+                    <p>Using a substance in a way, amount, or context it wasn't intended for — including legal drugs
+                        like alcohol and tobacco.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-teal">🧬</div>
+                    <h3>Brain Impact</h3>
+                    <p>Most misused substances hijack the brain's reward system, flooding it with dopamine and rewiring
+                        what feels "normal."</p>
+                </div>
+            </div>
+
+            <div class="tab-panel grid grid-4 stagger" data-panel="types">
+                <div class="card reveal">
+                    <div class="icon-badge badge-orange">🌿</div>
+                    <h3>Depressants</h3>
+                    <p>Alcohol, sedatives — slow down brain activity and reaction time.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-purple">⚡</div>
+                    <h3>Stimulants</h3>
+                    <p>Nicotine, cocaine, amphetamines — speed up heart rate and alertness artificially.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-teal">🌀</div>
+                    <h3>Hallucinogens</h3>
+                    <p>Substances that distort perception, thought and sense of reality.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-blue">💉</div>
+                    <h3>Opioids</h3>
+                    <p>Powerful painkillers with a very high risk of dependency and overdose.</p>
+                </div>
+            </div>
+
+            <div class="tab-panel grid grid-3 stagger" data-panel="why">
+                <div class="card reveal">
+                    <div class="icon-badge badge-blue">👥</div>
+                    <h3>Peer Pressure</h3>
+                    <p>Wanting to fit in or be accepted can push people to try something they otherwise wouldn't.</p>
+                    <div class="stat-line">Leads to → curiosity-driven first use</div>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-purple">😔</div>
+                    <h3>Emotional Escape</h3>
+                    <p>Stress, trauma or untreated mental health struggles can make substances feel like temporary
+                        relief.</p>
+                    <div class="stat-line">Leads to → dependency as a coping habit</div>
+                </div>
+                <div class="card reveal">
+                    <div class="icon-badge badge-orange">🔁</div>
+                    <h3>The Aftermath</h3>
+                    <p>Broken trust, financial strain, health decline and legal trouble often follow — trading a short
+                        high for a long struggle.</p>
+                    <div class="stat-line">Cost → far greater than the fleeting relief</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= EFFECTS ================= -->
+    <section class="section" id="effects" style="background:var(--bg-2);">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">The Real Cost</div>
+                <h2>Effects of Drug Addiction</h2>
+                <p>Addiction rarely stays in one lane — it spreads across the body, mind, relationships and future
+                    opportunities.</p>
+            </div>
+            <div class="grid grid-4 stagger">
+                <div class="card effect-card reveal">
+                    <div class="icon-badge badge-blue">🫀</div>
+                    <h3>Physical</h3>
+                    <p>Organ damage, weakened immunity, sleep disruption, and long-term chronic illness.</p>
+                    <div class="pct">73%</div>
+                    <div class="stat-line">report physical health decline</div>
+                </div>
+                <div class="card effect-card reveal">
+                    <div class="icon-badge badge-purple">🧠</div>
+                    <h3>Mental</h3>
+                    <p>Anxiety, depression, memory loss, and increased risk of severe psychiatric episodes.</p>
+                    <div class="pct">65%</div>
+                    <div class="stat-line">develop co-occurring mental health issues</div>
+                </div>
+                <div class="card effect-card reveal">
+                    <div class="icon-badge badge-teal">👨‍👩‍👧</div>
+                    <h3>Social</h3>
+                    <p>Broken relationships, isolation from family and friends, and loss of community trust.</p>
+                    <div class="pct">58%</div>
+                    <div class="stat-line">experience family breakdown</div>
+                </div>
+                <div class="card effect-card reveal">
+                    <div class="icon-badge badge-orange">🎓</div>
+                    <h3>Academic &amp; Career</h3>
+                    <p>Falling grades, job loss, and derailed long-term goals and ambitions.</p>
+                    <div class="pct">80%</div>
+                    <div class="stat-line">see academic or work performance drop</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WARNING SIGNS ================= -->
+    <section class="section" id="signs">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">Look Closer</div>
+                <h2>Warning Signs to Watch For</h2>
+                <p>Hover or tap each card to see how it can quietly show up in daily life.</p>
+            </div>
+            <div class="flip-grid stagger">
+                <div class="flip-card reveal">
+                    <button aria-label="Flip card">
+                        <div class="flip-inner">
+                            <div class="flip-face flip-front">
+                                <div class="icon-badge badge-blue">😴</div>
+                                <h3>Behavioral Shift</h3>
+                            </div>
+                            <div class="flip-face flip-back">
+                                <p>Sudden secrecy, mood swings, loss of interest in hobbies, or a new, unfamiliar friend
+                                    circle.</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="flip-card reveal">
+                    <button aria-label="Flip card">
+                        <div class="flip-inner">
+                            <div class="flip-face flip-front">
+                                <div class="icon-badge badge-purple">👁️</div>
+                                <h3>Physical Signs</h3>
+                            </div>
+                            <div class="flip-face flip-back">
+                                <p>Bloodshot eyes, sudden weight change, poor hygiene, or unexplained bruises and
+                                    tremors.</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="flip-card reveal">
+                    <button aria-label="Flip card">
+                        <div class="flip-inner">
+                            <div class="flip-face flip-front">
+                                <div class="icon-badge badge-teal">💸</div>
+                                <h3>Financial Red Flags</h3>
+                            </div>
+                            <div class="flip-face flip-back">
+                                <p>Frequently borrowing money, missing valuables, or unexplained spending patterns.</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="flip-card reveal">
+                    <button aria-label="Flip card">
+                        <div class="flip-inner">
+                            <div class="flip-face flip-front">
+                                <div class="icon-badge badge-orange">📉</div>
+                                <h3>Performance Drop</h3>
+                            </div>
+                            <div class="flip-face flip-back">
+                                <p>Declining grades or output at work, missed deadlines, frequent absences.</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PREVENTION ================= -->
+    <section class="section" id="prevention" style="background:var(--bg-2);">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">Building Resilience</div>
+                <h2>Prevention Starts Here</h2>
+                <p>Small, consistent choices build the strongest defense against addiction.</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <div class="tl-dot">🏃</div>
+                    <h3>Healthy Lifestyle Choices</h3>
+                    <p>Regular exercise, balanced nutrition and enough sleep keep the brain's reward system stable and
+                        resilient.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot">🧘</div>
+                    <h3>Stress Management</h3>
+                    <p>Journaling, mindfulness, and open conversations replace substances as a way to process pressure.
+                    </p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot">🏠</div>
+                    <h3>Family Support</h3>
+                    <p>An open, judgment-free home environment makes it far easier to ask for help early.</p>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-dot">🤝</div>
+                    <h3>Positive Friend Circle</h3>
+                    <p>Surrounding yourself with people who encourage your goals — not your worst impulses — changes
+                        everything.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= STORIES ================= -->
+    <section class="section" id="stories">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">Real Voices</div>
+                <h2>Stories of Strength</h2>
+                <p>Composite, anonymized reflections inspired by common recovery journeys.</p>
+            </div>
+            <div class="stories-track stagger">
+                <div class="card story-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p class="story-quote">"Admitting I needed help was the hardest and best decision I've ever made.
+                        Today I coach the same program that helped me."</p>
+                    <div class="story-person">
+                        <div class="avatar">R</div>
+                        <div><strong>Rohan, 24</strong><span>3 years in recovery</span></div>
+                    </div>
+                </div>
+                <div class="card story-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p class="story-quote">"My daughter's warning signs were subtle at first. Learning what to look for
+                        meant we caught it early and got her support fast."</p>
+                    <div class="story-person">
+                        <div class="avatar">M</div>
+                        <div><strong>Meera, Parent</strong><span>Family support advocate</span></div>
+                    </div>
+                </div>
+                <div class="card story-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p class="story-quote">"Rebuilding trust took time, but a stronger friend circle and daily routine
+                        gave me something worth staying sober for."</p>
+                    <div class="story-person">
+                        <div class="avatar">A</div>
+                        <div><strong>Aditya, 21</strong><span>Student &amp; peer mentor</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="section" id="quiz" style="background:var(--bg-2);">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">Test Yourself</div>
+                <h2>Drug Awareness Quiz</h2>
+                <p>Five quick questions to check what you really know.</p>
+            </div>
+            <div class="quiz-wrap reveal">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+                </div>
+                <div class="quiz-meta"><span id="quiz-count">Question 1 / 5</span><span id="quiz-score">Score: 0</span>
+                </div>
+                <div id="quiz-body">
+                    <h3 id="quiz-question"></h3>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <div class="quiz-feedback" id="quiz-feedback"></div>
+                </div>
+                <div id="quiz-result" class="quiz-result" style="display:none;">
+                    <div class="eyebrow" style="margin:0 auto 10px;">Quiz Complete</div>
+                    <h3>Your Awareness Score</h3>
+                    <div class="score" id="final-score">0/5</div>
+                    <p id="final-message" style="color:var(--text-muted);margin-bottom:26px;"></p>
+                    <button class="btn btn-primary" id="quiz-restart">Retake Quiz ↻</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= STATS DASHBOARD ================= -->
+    <section class="section" id="stats">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">Global Snapshot</div>
+                <h2>Statistics Dashboard</h2>
+                <p>Approximate, illustrative figures compiled for awareness purposes.</p>
+            </div>
+            <div class="dash-grid stagger">
+                <div class="card dash-card reveal">
+                    <div class="counter" data-count="296">0</div>
+                    <p>Million people affected globally *</p>
+                </div>
+                <div class="card dash-card reveal">
+                    <div class="counter" data-count="60">0</div>
+                    <p>% of first use happens before age 18 *</p>
+                </div>
+                <div class="card dash-card reveal">
+                    <div class="counter" data-count="12">0</div>
+                    <p>Million+ helped through recovery programs *</p>
+                </div>
+                <div class="card dash-card reveal">
+                    <div class="counter" data-count="90">0</div>
+                    <p>% better outcomes with early intervention *</p>
+                </div>
+            </div>
+            <div class="card bars reveal">
+                <h3 style="margin-bottom:26px;">Effects Reported by Category</h3>
+                <div class="bar-row">
+                    <div class="bar-label">Physical Health</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="73" style="background:var(--grad-cool);"></div>
+                    </div>
+                    <div class="bar-value">73%</div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Mental Health</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="65"
+                            style="background:linear-gradient(90deg,var(--purple),var(--coral));"></div>
+                    </div>
+                    <div class="bar-value">65%</div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Family &amp; Social</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="58"
+                            style="background:linear-gradient(90deg,var(--blue),var(--indigo));"></div>
+                    </div>
+                    <div class="bar-value">58%</div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Academic / Career</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="80" style="background:var(--grad-warm);"></div>
+                    </div>
+                    <div class="bar-value">80%</div>
+                </div>
+                <p class="dash-note">* Figures are approximate and simplified for general awareness — always refer to
+                    official health bodies (e.g. WHO, UNODC) for exact data.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= HELP ================= -->
+    <section class="section" id="help" style="background:var(--bg-2);">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow" style="margin:0 auto 22px;">You Are Not Alone</div>
+                <h2>Help &amp; Support</h2>
+                <p>Reaching out is a sign of strength, not weakness. Support is closer than it feels.</p>
+            </div>
+            <div class="help-grid">
+                <div class="help-panel reveal">
+                    <h3>Emergency &amp; Helpline Contacts</h3>
+                    <p>Confidential, round-the-clock support lines to talk to someone right now.</p>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <div class="ico">🚑</div>
+                            <div><strong>Emergency Services</strong><span>Dial your local emergency number</span></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="ico">☎️</div>
+                            <div><strong>National Drug Helpline</strong><span>Free, confidential, 24/7 support</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="ico">💬</div>
+                            <div><strong>Text &amp; Chat Support</strong><span>For when calling feels hard</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="support-cards reveal">
+                    <div class="card">
+                        <div class="icon-badge badge-teal">🩺</div>
+                        <h3>Counseling &amp; Rehabilitation</h3>
+                        <p>Licensed counselors and rehab centers offer personalized recovery plans — reach out to a
+                            local health authority or hospital to get connected.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-badge badge-purple">💜</div>
+                        <h3>A Message for You</h3>
+                        <p>Whatever stage you're at — curious, worried, or in recovery — your story isn't over. One
+                            decision today can change everything that follows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#top" class="logo"><span class="logo-mark">🛡️</span>Choose<span
+                            class="gradient-text">Life</span></a>
+                    <p class="footer-quote">"Every day you choose life, you choose yourself."</p>
+                    <div class="social-row">
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#about">About Drugs</a></li>
+                        <li><a href="#effects">Effects</a></li>
+                        <li><a href="#signs">Warning Signs</a></li>
+                        <li><a href="#prevention">Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h4>Engage</h4>
+                    <ul>
+                        <li><a href="#stories">Real Stories</a></li>
+                        <li><a href="#quiz">Take the Quiz</a></li>
+                        <li><a href="#stats">Statistics</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#help">Get Help</a></li>
+                        <li><a href="#help">Helplines</a></li>
+                        <li><a href="#help">Counseling</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 ChooseLife Awareness Initiative. Built for education, not diagnosis.</span>
+                <span>Made with care for a healthier tomorrow.</span>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-top" aria-label="Back to top">↑</button>
+
+    <script>
+        /* ============ LOADER ============ */
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('hide'), 900);
+        });
+
+        /* ============ CUSTOM CURSOR ============ */
+        const dot = document.querySelector('.cursor-dot'), ring = document.querySelector('.cursor-ring');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+        });
+        function animRing() {
+            rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+            ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+            requestAnimationFrame(animRing);
+        }
+        animRing();
+        document.querySelectorAll('a,button,.card,.flip-card').forEach(el => {
+            el.addEventListener('mouseenter', () => ring.classList.add('active'));
+            el.addEventListener('mouseleave', () => ring.classList.remove('active'));
+        });
+
+        /* ============ NAV SCROLL ============ */
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 40);
+            document.getElementById('back-top').classList.toggle('show', window.scrollY > 500);
+        });
+
+        /* ============ MOBILE MENU ============ */
+        const burger = document.getElementById('burger'), mobileMenu = document.getElementById('mobile-menu');
+        burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+        /* ============ THEME TOGGLE ============ */
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        /* ============ BACK TO TOP ============ */
+        document.getElementById('back-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        /* ============ TABS ============ */
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+            });
+        });
+
+        /* ============ SCROLL REVEAL ============ */
+        const revealEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('in'); }
+            });
+        }, { threshold: 0.15 });
+        revealEls.forEach(el => io.observe(el));
+
+        /* ============ COUNTERS ============ */
+        function animateCounter(el) {
+            const target = +el.dataset.count;
+            let cur = 0; const step = Math.max(1, target / 60);
+            const tick = () => {
+                cur += step;
+                if (cur >= target) { el.textContent = target; return; }
+                el.textContent = Math.floor(cur);
+                requestAnimationFrame(tick);
+            };
+            tick();
+        }
+        const counterObserved = new Set();
+        const counterIO = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counterObserved.has(entry.target)) {
+                    counterObserved.add(entry.target);
+                    animateCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+        /* ============ BARS ============ */
+        const barIO = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width + '%';
+                }
+            });
+        }, { threshold: 0.4 });
+        document.querySelectorAll('.bar-fill').forEach(el => barIO.observe(el));
+
+        /* ============ CARD SPOTLIGHT ============ */
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            });
+        });
+
+        /* ============ QUIZ ============ */
+        const quizData = [
+            {
+                q: "What does long-term drug misuse most directly affect first?", opts: ["Brain's reward system", "Eye color", "Height", "Handwriting"], a: 0,
+                fb: "Correct — drugs hijack the brain's dopamine and reward pathways."
+            },
+            {
+                q: "Which of these is a common early warning sign of substance misuse?", opts: ["Improved grades", "Sudden secrecy and mood swings", "Better sleep", "More social activity"], a: 1,
+                fb: "Correct — behavioral shifts like secrecy are classic early signs."
+            },
+            {
+                q: "What is one of the most effective long-term prevention strategies?", opts: ["Avoiding all friendships", "A supportive family environment", "Ignoring stress", "Isolation"], a: 1,
+                fb: "Correct — strong family and social support significantly reduces risk."
+            },
+            {
+                q: "Opioids carry a particularly high risk of:", opts: ["Improved memory", "Overdose and dependency", "Faster healing", "Better vision"], a: 1,
+                fb: "Correct — opioids are especially dangerous due to overdose risk."
+            },
+            {
+                q: "What's the best first step if you're worried about someone?", opts: ["Confront them publicly", "Ignore it and hope it passes", "Have a caring, private conversation or seek professional guidance", "Cut them off immediately"], a: 2,
+                fb: "Correct — a calm, private conversation or professional support helps most."
+            }
+        ];
+        let qIndex = 0, qScore = 0;
+        const qQuestion = document.getElementById('quiz-question');
+        const qOptions = document.getElementById('quiz-options');
+        const qFeedback = document.getElementById('quiz-feedback');
+        const qProgress = document.getElementById('quiz-progress-bar');
+        const qCount = document.getElementById('quiz-count');
+        const qScoreEl = document.getElementById('quiz-score');
+        const qBody = document.getElementById('quiz-body');
+        const qResult = document.getElementById('quiz-result');
+
+        function loadQuestion() {
+            const item = quizData[qIndex];
+            qQuestion.textContent = item.q;
+            qOptions.innerHTML = '';
+            qFeedback.textContent = '';
+            qFeedback.className = 'quiz-feedback';
+            qProgress.style.width = (qIndex / quizData.length * 100) + '%';
+            qCount.textContent = `Question ${qIndex + 1} / ${quizData.length}`;
+            qScoreEl.textContent = `Score: ${qScore}`;
+            item.opts.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.className = 'quiz-opt';
+                b.textContent = opt;
+                b.addEventListener('click', () => selectAnswer(i));
+                qOptions.appendChild(b);
+            });
+        }
+        function selectAnswer(i) {
+            const item = quizData[qIndex];
+            const opts = qOptions.querySelectorAll('.quiz-opt');
+            opts.forEach(o => o.disabled = true);
+            if (i === item.a) {
+                opts[i].classList.add('correct');
+                qFeedback.textContent = "✔ " + item.fb;
+                qFeedback.classList.add('correct');
+                qScore++;
+            } else {
+                opts[i].classList.add('wrong');
+                opts[item.a].classList.add('correct');
+                qFeedback.textContent = "✘ Not quite. " + item.fb;
+                qFeedback.classList.add('wrong');
+            }
+            qScoreEl.textContent = `Score: ${qScore}`;
+            setTimeout(() => {
+                qIndex++;
+                if (qIndex < quizData.length) { loadQuestion(); }
+                else { finishQuiz(); }
+            }, 1400);
+        }
+        function finishQuiz() {
+            qProgress.style.width = '100%';
+            qBody.style.display = 'none';
+            qResult.style.display = 'block';
+            document.getElementById('final-score').textContent = `${qScore}/${quizData.length}`;
+            let msg = "";
+            if (qScore === quizData.length) msg = "Outstanding! You clearly understand the risks and how to respond.";
+            else if (qScore >= 3) msg = "Good awareness! A little more knowledge goes a long way.";
+            else msg = "Thanks for trying — revisit the sections above to sharpen your awareness.";
+            document.getElementById('final-message').textContent = msg;
+        }
+        document.getElementById('quiz-restart').addEventListener('click', () => {
+            qIndex = 0; qScore = 0;
+            qBody.style.display = 'block';
+            qResult.style.display = 'none';
+            loadQuestion();
+        });
+        loadQuestion();
+    </script>
+</body>
+
+</html>
